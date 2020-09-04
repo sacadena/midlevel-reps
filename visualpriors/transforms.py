@@ -192,7 +192,7 @@ class VisualPriorRepresentation(object):
         net.eval()
         #checkpoint = torch.utils.model_zoo.load_url(url, model_dir=model_dir, progress=progress)
         checkpoint = torch.hub.load_state_dict_from_url(url, model_dir=model_dir, progress=progress)
-	net.load_state_dict(checkpoint['state_dict'])
+        net.load_state_dict(checkpoint['state_dict'])
         for p in net.parameters():
             p.requires_grad = False
         # net = Compose(nn.GroupNorm(32, 32, affine=False), net)

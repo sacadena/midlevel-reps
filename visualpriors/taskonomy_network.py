@@ -327,7 +327,7 @@ class TaskonomyEncoder(nn.Module):
     def __init__(self, normalize_outputs=True, eval_only=True, train_penultimate=False, train=False):
         self.inplanes = 64
         super(TaskonomyEncoder, self).__init__()
-        self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=0, bias=False)
+        self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3, bias=False)
         self.bn1 = nn.BatchNorm2d(64)
         self.relu = nn.ReLU(inplace=True)
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=0, ceil_mode=True)
@@ -386,7 +386,7 @@ class TaskonomyEncoder(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
-        x = F.pad(x, pad=(3,3,3,3), mode='constant', value=0)
+        #x = F.pad(x, pad=(3,3,3,3), mode='constant', value=0)
         #  other modes are reflect, replicate, constant
 
         x = self.conv1(x)
